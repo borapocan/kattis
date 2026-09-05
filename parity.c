@@ -1,7 +1,7 @@
 // SPDX-License-Identifier: GPL-3.0-or-later
 
 /*
- * snakeystring.c - MrRobotOS Linux
+ * parity.c - MrRobotOS Linux
  *
  * Copyright (C) 2026 Merih Bora Poçan - MrRobotOS Linux
  *
@@ -24,31 +24,31 @@
 
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
+
+#define SIZE 32
 
 int main(int argc, char **argv)
 {
-	int r, c; scanf("%d %d", &r, &c);
-	char **grid = (char**)malloc(sizeof(char*) * r);
-	for (int i = 0; i < r; i++) {
-		*(grid + i) = (char*)malloc(sizeof(char*) * c);
-		for (int j = 0; j < c; j++) {
-			scanf(" %c", (*(grid + i) + j));
+	char *str = (char*)malloc(sizeof(char) * (SIZE + 1));
+	while (scanf("%s", str) && strcmp(str, "#") != 0) {
+		int size = strlen(str), one_count = 0;
+		for (int i = 0; i < size; i++) {
+			if (*(str + i) == '1')
+				one_count++;
 		}
-	}
-
-	for (int j = 0; j < c; j++) {
-		for (int i = 0; i < r; i++) {
-			if (*(*(grid + i) + j) >= 'A' &&
-			    *(*(grid + i) + j) <= 'Z') {
-				printf("%c", *(*(grid + i) + j));
-				break;
-			}
+		if (str[size - 1] == 'e') {
+			if (one_count % 2 == 0)
+				str[size - 1] = '0';
+			else
+				str[size - 1] = '1';
+		} else {
+			if (one_count % 2 == 0)
+				str[size - 1] = '1';
+			else
+				str[size - 1] = '0';
 		}
+		printf("%s\n", str);
 	}
-	for (int i = 0; i < r; i++) {
-		free(*(grid + i));
-	}
-	free(grid);
-
 	return 0;
 }

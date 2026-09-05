@@ -1,7 +1,7 @@
 // SPDX-License-Identifier: GPL-3.0-or-later
 
 /*
- * snakeystring.c - MrRobotOS Linux
+ * computercompute.c - MrRobotOS Linux
  *
  * Copyright (C) 2026 Merih Bora Poçan - MrRobotOS Linux
  *
@@ -23,32 +23,13 @@
  */
 
 #include <stdio.h>
-#include <stdlib.h>
+#include <math.h>
 
 int main(int argc, char **argv)
 {
-	int r, c; scanf("%d %d", &r, &c);
-	char **grid = (char**)malloc(sizeof(char*) * r);
-	for (int i = 0; i < r; i++) {
-		*(grid + i) = (char*)malloc(sizeof(char*) * c);
-		for (int j = 0; j < c; j++) {
-			scanf(" %c", (*(grid + i) + j));
-		}
-	}
-
-	for (int j = 0; j < c; j++) {
-		for (int i = 0; i < r; i++) {
-			if (*(*(grid + i) + j) >= 'A' &&
-			    *(*(grid + i) + j) <= 'Z') {
-				printf("%c", *(*(grid + i) + j));
-				break;
-			}
-		}
-	}
-	for (int i = 0; i < r; i++) {
-		free(*(grid + i));
-	}
-	free(grid);
-
+	double x1, y1, x2, y2;
+	scanf("%lf %lf %lf %lf", &x1, &y1, &x2, &y2);
+	double res = sqrt(pow((x2 - x1), 2.0) + pow((y2 - y1), 2.0));
+	printf("%.9lf\n", res);
 	return 0;
 }

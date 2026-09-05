@@ -1,7 +1,7 @@
 // SPDX-License-Identifier: GPL-3.0-or-later
 
 /*
- * snakeystring.c - MrRobotOS Linux
+ * memoriesofpassportcontrol.c - MrRobotOS Linux
  *
  * Copyright (C) 2026 Merih Bora Poçan - MrRobotOS Linux
  *
@@ -27,28 +27,7 @@
 
 int main(int argc, char **argv)
 {
-	int r, c; scanf("%d %d", &r, &c);
-	char **grid = (char**)malloc(sizeof(char*) * r);
-	for (int i = 0; i < r; i++) {
-		*(grid + i) = (char*)malloc(sizeof(char*) * c);
-		for (int j = 0; j < c; j++) {
-			scanf(" %c", (*(grid + i) + j));
-		}
-	}
-
-	for (int j = 0; j < c; j++) {
-		for (int i = 0; i < r; i++) {
-			if (*(*(grid + i) + j) >= 'A' &&
-			    *(*(grid + i) + j) <= 'Z') {
-				printf("%c", *(*(grid + i) + j));
-				break;
-			}
-		}
-	}
-	for (int i = 0; i < r; i++) {
-		free(*(grid + i));
-	}
-	free(grid);
-
+	int k, s; scanf("%d %d", &k, &s);
+	printf("%d\n", (s / k) + (s % k));
 	return 0;
 }

@@ -1,7 +1,7 @@
 // SPDX-License-Identifier: GPL-3.0-or-later
 
 /*
- * snakeystring.c - MrRobotOS Linux
+ * majorasmath.c - MrRobotOS Linux
  *
  * Copyright (C) 2026 Merih Bora Poçan - MrRobotOS Linux
  *
@@ -23,32 +23,28 @@
  */
 
 #include <stdio.h>
-#include <stdlib.h>
+#include <string.h>
 
 int main(int argc, char **argv)
 {
-	int r, c; scanf("%d %d", &r, &c);
-	char **grid = (char**)malloc(sizeof(char*) * r);
-	for (int i = 0; i < r; i++) {
-		*(grid + i) = (char*)malloc(sizeof(char*) * c);
-		for (int j = 0; j < c; j++) {
-			scanf(" %c", (*(grid + i) + j));
+	int h, n; scanf("%d %d", &h, &n);
+	int a, b, c, d; scanf("%d %d %d %d", &a, &b, &c, &d);
+	int total = 0;
+	for (int i = 0; i < n; i++) {
+		char s[10]; scanf("%s", s);
+		if (strcmp(s, "standard") == 0) {
+			total += a;
+		}
+		else if (strcmp(s, "fire") == 0) {
+			total += b;
+		}
+		else if (strcmp(s, "ice") == 0) {
+			total += c;
+		}
+		else {
+			total += d;
 		}
 	}
-
-	for (int j = 0; j < c; j++) {
-		for (int i = 0; i < r; i++) {
-			if (*(*(grid + i) + j) >= 'A' &&
-			    *(*(grid + i) + j) <= 'Z') {
-				printf("%c", *(*(grid + i) + j));
-				break;
-			}
-		}
-	}
-	for (int i = 0; i < r; i++) {
-		free(*(grid + i));
-	}
-	free(grid);
-
+	(h - total <= 0) ? printf("dead\n") : printf("%d\n", h - total);
 	return 0;
 }
